@@ -32,6 +32,7 @@
         <b id="b{{publication.id}}"> | &nbsp; {{ publication.likes.all.count }} people liked this &nbsp; | &nbsp;
           {{ publication.comments_counter }} сomments </b>
       <p class="card-text">{{ publication }}</p>
+
       <a href="{% url 'publications:index' %}" class="btn btn-primary">Back to the list</a>
     </div>
   </div>
@@ -40,20 +41,23 @@
     {% csrf_token %}
     <label> Добавить сообщение:</label>
     <input type="text" name="message" placeholder="Введите сообщение" class="form-control" required id="id_message">
+    <input type="hidden" value="{{publication.pk}}" id="publication.pk">
     <button type="submit" id="message" class="genric-btn primary circle mt-2">Отправить
     </button>
   </form>
   <script>
     const comment_it = function () {
        let text = document.getElementById('id_message')
-       let send = document.getElementById('message')
+       let pub = document.getElementById('publication.pk')
+
        $.ajax({
-           url: 'http://localhost:8000/api/v2/comment_it/',
+           url: `http://localhost:8000/api/v2/comment_it/${pub.value}`,
            method: 'post',
-           data: JSON.stringify({ username: username.value, password: password.value }),
+           data: JSON.stringify({ text: text.value}),
            dataType: 'json',
+           headers: { 'Authorization': 'Token ' + localStorage.getItem('apiToken') },
            contentType: 'application/json',
-           success: function (response, status) {localStorage.setItem('apiToken', response.token); },
+           success: window.location.reload(),
            error: function (response, status) { console.log(response); }
        });
    }
