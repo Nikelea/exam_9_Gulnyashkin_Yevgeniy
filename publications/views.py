@@ -23,6 +23,7 @@ def like_publication(request, pk):
 class IndexView(ListView):
     context_object_name = 'publications'
     model = Publication
+    ordering = ('-created_at')
     template_name = 'publication/publication_list.html'
 
 

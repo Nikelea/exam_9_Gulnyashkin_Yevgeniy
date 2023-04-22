@@ -3,7 +3,7 @@
 {% block title %}User list{% endblock %}
 
 {% block content %}
-    {% for user in users %}
+    {% for user in userss %}
             <div class="card" style="width: 16rem;">
               {% if user.profile.avatar %}
                 <img style="margin: 2px;" class="avatar" src="{{ user.profile.avatar.url }}" width="250" height="250" alt="user picture">

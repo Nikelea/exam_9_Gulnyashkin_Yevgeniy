@@ -84,7 +84,7 @@ class RegisterView(View):
 
 
 class UserListView(SearchView):
-    context_object_name = 'users'
+    context_object_name = 'userss'
     model = get_user_model()
     template_name = 'user_list.html'
     ordering = ['-date_joined']
@@ -128,12 +128,13 @@ class ProfileView(DetailView):
     model = get_user_model()
     pk_url_kwarg = 'user_pk'
 
-
+    # def get_object(self):
+    #     return self.model.objects.get(id=self.request.user.id)
+    
     def get_context_data(self, **kwargs):
-        publications = Publication.objects.filter(likes__posts__user_id=self.request.user.id).order_by('-created_at').distinct()
+        publications = Publication.objects.filter(likes__posts__user_id=self.object.pk).order_by('-created_at').distinct()
         followers = Follower.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
-        context.update({ 'followers': followers })
         context.update({ 'publications': publications })
         return context
 

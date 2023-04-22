@@ -29,14 +29,14 @@ const like = function (e) {
                 let count = document.getElementById('b' + pub_id)
 
                 if (response.result === true) {
-                    link.innerHTML = 'Unlike';
-                    count.innerHTML = ` | &nbsp; ${response.count} people liked this &nbsp; | &nbsp 
+                    link.innerHTML = 'Из избранного';
+                    count.innerHTML = ` | &nbsp; В избранном у ${response.count} &nbsp; | &nbsp 
             ${response.comment} сomments&nbsp`
                 }
                 else {
-                    count.innerHTML = ` | &nbsp; ${response.count} people liked this &nbsp; | &nbsp 
+                    count.innerHTML = ` | &nbsp; В избранном у ${response.count} &nbsp; | &nbsp 
             ${response.comment} сomments&nbsp`
-                    link.innerHTML = 'Like';
+                    link.innerHTML = 'В избранное';
                 }
 
             },
