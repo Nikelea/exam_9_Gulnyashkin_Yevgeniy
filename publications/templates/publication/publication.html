@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Publications{% endblock %}
+
+{% block content %}
+<h1> {{ publication.user }}'s publication
+  <a href="{% url 'publications:publication_edit' publication.pk %}"><img style="margin-left: 100px;" src="img/icon/pensil.png" width="30" 
+ height="30" alt="Edit"></a>
+    <br>
+    <div class="card" style="width: 40rem;">
+      <img class="card-img-top" src="{{ publication.image.url }}" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-title">
+          {% if user.is_authenticated %}
+          <form action="{% url 'publications:like_publication' publication.pk %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="publication_id" value="{{ publication.id }}" class="btn btn-primary">
+
+                {% if request.user in publication.likes.all %}
+                    Unlike 
+                {% else  %}
+                    Like
+                {% endif %} 
+          {% endif %}
+            </button>
+          </form>
+          <a data-toggle="modal" data-target="#exampleModal" href="{% url 'publications:delete' publication.pk %}">&ensp;Удалить фото</a>
+          {% include 'publication/pub_modal.html' with object_to_delete=publication%} 
+            &nbsp;
+            <b> | &nbsp; {{ publication.likes.all.count }} people liked this &nbsp; | &nbsp;
+                {{ publication.comments_counter }} сomments </b></p>
+        <p class="card-text">{{ publication }}</p>
+        <a href="{% url 'publications:index' %}" class="btn btn-primary">Back to the list</a>
+      </div>
+    </div>
+    <br>
+{% endblock %}
+
