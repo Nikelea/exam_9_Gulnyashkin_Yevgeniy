@@ -132,8 +132,7 @@ class ProfileView(DetailView):
     #     return self.model.objects.get(id=self.request.user.id)
     
     def get_context_data(self, **kwargs):
-        publications = Publication.objects.filter(likes__posts__user_id=self.object.pk).order_by('-created_at').distinct()
-        followers = Follower.objects.filter(user=self.request.user)
+        publications = Publication.objects.filter(likes__id=self.object.pk).order_by('-created_at').distinct()
         context = super().get_context_data(**kwargs)
         context.update({ 'publications': publications })
         return context
