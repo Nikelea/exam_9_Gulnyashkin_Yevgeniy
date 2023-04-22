@@ -9,6 +9,7 @@ class Publication(models.Model):
     likes_counter = models.IntegerField(null=True, blank=False, default=0, verbose_name='Число лайков')
     comments_counter = models.IntegerField(null=True, blank=False, default=0, verbose_name='Число комментариев')
     likes = models.ManyToManyField(get_user_model(), related_name='posts')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
 
     def __str__(self):
         return self.description
