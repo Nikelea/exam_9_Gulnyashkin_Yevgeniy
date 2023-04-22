@@ -4,8 +4,10 @@
 
 {% block content %}
 <h1> {{ publication.user }}'s publication
+  {% if request.user == publication.user or request.user.is_superuser %}
   <a href="{% url 'publications:publication_edit' publication.pk %}"><img style="margin-left: 100px;" src="{% static 'img/icon/pensil.png' %}" width="30" 
  height="30" alt="Edit"></a>
+ {% endif %}
     <br>
     <div class="card" style="width: 40rem;">
       <img class="card-img-top" src="{{ publication.image.url }}" alt="Card image cap">
@@ -21,8 +23,10 @@
           {% endif %}
         </a>
           </form>
+          {% if request.user == publication.user or request.user.is_superuser %}
           <a data-toggle="modal" data-target="#exampleModal" href="{% url 'publications:delete' publication.pk %}">&ensp;Удалить фото</a>
           {% include 'publication/pub_modal.html' with object_to_delete=publication%} 
+          {% endif %}
             &nbsp;
             <b id="b{{publication.id}}"> | &nbsp; {{ publication.likes.all.count }} people liked this &nbsp; | &nbsp;
               {{ publication.comments_counter }} сomments </b>

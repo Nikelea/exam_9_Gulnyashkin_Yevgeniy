@@ -27,7 +27,7 @@ class IndexView(ListView):
     template_name = 'publication/publication_list.html'
 
 
-class PublicationCreateView(CreateView):
+class PublicationCreateView(LoginRequiredMixin, CreateView):
     model = Publication
     form_class = PublicationForm
     template_name = 'publication/create.html'
@@ -58,24 +58,18 @@ class PublicationDelete(PermissionRequiredMixin, DeleteView):
 
 
     def has_permission(self):
-        return (
-        self.get_object().user == self.request.user or self.request.user.is_superuser
-        )
+        return self.get_object().user == self.request.user or self.request.user.is_superuser
 
     def get_success_url(self):
         return reverse('publications:index')
     
-class PublicationEdit(UpdateView):
+class PublicationEdit(PermissionRequiredMixin, UpdateView):
     model = Publication
     form_class = PublicationForm
     template_name = 'publication/update.html'
 
     def has_permission(self):
-        return (
-        self.get_object().user == self.request.user and
-        super().has_permission() or
-        self.request.user.is_superuser
-        )
+        return self.get_object().user == self.request.user or self.request.user.is_superuser
 
     def get_success_url(self):
         return reverse('publications:detail', kwargs={'publication_pk': self.object.pk})
