@@ -22,3 +22,4 @@ class PubSerializer(serializers.ModelSerializer):
         model = Publication
         fields = ['id', 'description', 'image', 'user', 'likes', ]
         read_only_fields = ['id']
+

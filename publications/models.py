@@ -18,3 +18,12 @@ class Publication(models.Model):
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
 
+
+class Comments(models.Model):
+    author = models.ForeignKey(verbose_name='Автор', to=get_user_model(), related_name='comments', null=False,
+                               blank=False,
+                               on_delete=models.CASCADE)
+    post = models.ForeignKey(verbose_name='Публикация', to='publications.Publication', related_name='comments', null=False,
+                             blank=False, on_delete=models.CASCADE)
+    text = models.TextField(verbose_name='Описание', null=False, blank=False, max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')

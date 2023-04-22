@@ -71,7 +71,7 @@
   "model": "auth.user",
   "fields": {
     "password": "pbkdf2_sha256$320000$0M5zN2y9OVGkEjH8oTIaXl$XxqHjUa/5boPDmn1tsQFRx7TShYFOwz//W+kawQ5O6E=",
-    "last_login": "2023-04-19T15:18:57.579Z",
+    "last_login": "2023-04-22T10:31:35.719Z",
     "is_superuser": false,
     "username": "dddd",
     "first_name": "dddd",
@@ -88,7 +88,7 @@
   "model": "auth.user",
   "fields": {
     "password": "pbkdf2_sha256$320000$hYmpYDI7jsBhfmvJoGDaJN$SevX/h0Aw+DkUNCuUWL+YM273wjItxvF0y6XkjhXP6s=",
-    "last_login": "2023-04-20T07:07:38.830Z",
+    "last_login": "2023-04-22T11:02:46.159Z",
     "is_superuser": false,
     "username": "aaa",
     "first_name": "aaa",
@@ -97,6 +97,23 @@
     "is_staff": false,
     "is_active": true,
     "date_joined": "2023-04-20T06:25:48.966Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$320000$k7n2dB2zGYIl7Xy04B4scB$sn5L9XvHi/FuBgHNjeQvROajduUS/4a1iGQ3eCDD3xA=",
+    "last_login": "2023-04-22T10:34:18.691Z",
+    "is_superuser": false,
+    "username": "sss",
+    "first_name": "sss",
+    "last_name": "",
+    "email": "s@s.ss",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-22T10:33:56.643Z",
     "groups": [],
     "user_permissions": []
   }
@@ -127,6 +144,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "kxphpvfnjqy1z86cyqgrdmob7ws5t2de",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBICwMu3XsGMsMMUjU0Ke3KeHdt0oVu_3vvv1TCba1p67KkidVZuUGdfkfC_JC2E75ju806z21dJtK7og_a9XVmeV4O9--gYq_f2hsmGyJl4QCjxWhHxwx-gGIlFKRIRsRjQcaQ0UcALAYDZydGIqj3By03OWs:1pqB0w:F4aylWwhKz6EpPqkqfXSgViNRQII5dy8e6D8EHEievQ",
+    "expire_date": "2023-05-06T11:02:46.160Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "udsubg62bzm6wncap2eybcfqlee2vgez",
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2hBICwMu3XsGMsMMUjU0Ke3KeHdt0oVu_3vvv1TCba1p67KkidVZuUGdfkfC_JC2E75ju806z21dJtK7og_a9XVmeV4O9--gYq_f2hsmGyJl4QCjxWhHxwx-gGIlFKRIRsRjQcaQ0UcALAYDZydGIqj3By03OWs:1ppNqP:GkOundk6lx9-O6BtRsNglQNoHvIR29h_qbLeU8k0QXE",
@@ -143,12 +168,12 @@
 },
 {
   "model": "authtoken.token",
-  "pk": "377726d44174d10e949783502b3808d45771ee9c",
+  "pk": "1fd7954f125ad02b331d50f389bce7da0f9ac5c3",
   "fields": {
     "user": [
       "aaa"
     ],
-    "created": "2023-04-20T07:07:38.820Z"
+    "created": "2023-04-22T11:02:46.160Z"
   }
 },
 {
@@ -272,6 +297,22 @@
   }
 },
 {
+  "model": "accounts.profile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "sss"
+    ],
+    "avatar": "user_pics/2023-04-17_16-35.png",
+    "about": "sss",
+    "phone": 4444444,
+    "sex": 1,
+    "publications_counter": 0,
+    "subscriptions_counter": 0,
+    "subscribers_counter": 0
+  }
+},
+{
   "model": "publications.publication",
   "pk": 1,
   "fields": {
@@ -280,14 +321,18 @@
     ],
     "image": "images/nature-pic_QxwAn0M.jpg",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "likes_counter": 2,
-    "comments_counter": 0,
+    "likes_counter": 3,
+    "comments_counter": 4,
+    "created_at": "2023-04-22T09:26:38.544Z",
     "likes": [
       [
         "admin"
       ],
       [
-        "aaa"
+        "dddd"
+      ],
+      [
+        "sss"
       ]
     ]
   }
@@ -301,14 +346,12 @@
     ],
     "image": "images/image_7867-Cats.jpg",
     "description": "5555555",
-    "likes_counter": 2,
+    "likes_counter": 1,
     "comments_counter": 0,
+    "created_at": "2023-04-22T09:26:38.544Z",
     "likes": [
       [
         "admin"
-      ],
-      [
-        "aaa"
       ]
     ]
   }
@@ -322,9 +365,250 @@
     ],
     "image": "images/images.jpeg",
     "description": "Catz",
+    "likes_counter": 1,
+    "comments_counter": 0,
+    "created_at": "2023-04-22T09:26:38.544Z",
+    "likes": [
+      [
+        "aaa"
+      ]
+    ]
+  }
+},
+{
+  "model": "publications.publication",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "aaa"
+    ],
+    "image": "images/Screenshot_from_2023-01-30_13-58-57_gCDP1T7.png",
+    "description": "screen",
     "likes_counter": 0,
     "comments_counter": 0,
+    "created_at": "2023-04-22T09:26:38.544Z",
     "likes": []
+  }
+},
+{
+  "model": "publications.publication",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "aaa"
+    ],
+    "image": "images/photo_2022-11-16_15-05-26.jpg",
+    "description": "screen",
+    "likes_counter": 1,
+    "comments_counter": 0,
+    "created_at": "2023-04-22T09:26:38.544Z",
+    "likes": [
+      [
+        "sss"
+      ]
+    ]
+  }
+},
+{
+  "model": "publications.publication",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "aaa"
+    ],
+    "image": "images/photo_2022-11-16_16-40-22.jpg",
+    "description": "screendddddddddsaaaaaaaa",
+    "likes_counter": 1,
+    "comments_counter": 0,
+    "created_at": "2023-04-22T09:26:38.544Z",
+    "likes": [
+      [
+        "aaa"
+      ]
+    ]
+  }
+},
+{
+  "model": "publications.publication",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "aaa"
+    ],
+    "image": "images/images_yXPue71.jpeg",
+    "description": "screenggggg",
+    "likes_counter": 1,
+    "comments_counter": 0,
+    "created_at": "2023-04-22T09:26:38.544Z",
+    "likes": [
+      [
+        "aaa"
+      ]
+    ]
+  }
+},
+{
+  "model": "publications.publication",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "aaa"
+    ],
+    "image": "images/2023-04-17_19-31.png",
+    "description": "lastaa",
+    "likes_counter": 3,
+    "comments_counter": 0,
+    "created_at": "2023-04-22T09:27:21.294Z",
+    "likes": [
+      [
+        "dddd"
+      ],
+      [
+        "sss"
+      ],
+      [
+        "aaa"
+      ]
+    ]
+  }
+},
+{
+  "model": "publications.publication",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "sss"
+    ],
+    "image": "images/images_rO5Dp3H.jpeg",
+    "description": "sss",
+    "likes_counter": 1,
+    "comments_counter": 0,
+    "created_at": "2023-04-22T10:47:48.692Z",
+    "likes": [
+      [
+        "sss"
+      ]
+    ]
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 1,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:14:13.469Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 2,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:14:51.953Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 3,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:16:04.689Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 4,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:16:36.936Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 5,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:16:39.836Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 6,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:16:43.725Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 7,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:17:23.084Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 8,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:17:25.729Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 9,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:17:26.648Z"
+  }
+},
+{
+  "model": "publications.comments",
+  "pk": 10,
+  "fields": {
+    "author": [
+      "admin"
+    ],
+    "post": 1,
+    "text": "ggggggggg",
+    "created_at": "2023-04-22T12:19:26.856Z"
   }
 }
 ]

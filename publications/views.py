@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.contrib.auth import get_user_model
 from publications.models import Publication
-from publications.forms import PublicationForm
+from publications.forms import PublicationForm, CommentForm
 
 
 def like_publication(request, pk):
@@ -41,7 +41,6 @@ class PublicationCreateView(LoginRequiredMixin, CreateView):
         user = get_object_or_404(get_user_model(), pk=self.request.user.pk)
         publication = form.save(commit=False)
         publication.user = user
-        print(publication)
         publication.save()
         return redirect('publications:index')
 
@@ -51,11 +50,15 @@ class PublicationView(DetailView):
     template_name = 'publication/publication.html'
     model = Publication
     pk_url_kwarg = 'publication_pk'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['form'] = CommentForm
+        return context
 
 
 class PublicationDelete(PermissionRequiredMixin, DeleteView):
     model = Publication
-
 
     def has_permission(self):
         return self.get_object().user == self.request.user or self.request.user.is_superuser
@@ -73,3 +76,5 @@ class PublicationEdit(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('publications:detail', kwargs={'publication_pk': self.object.pk})
+    
+

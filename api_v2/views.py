@@ -4,7 +4,7 @@ from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from api_v2.serializers import PubSerializer
-from publications.models import Publication
+from publications.models import Publication, Comments
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated, BasePermission
@@ -29,7 +29,7 @@ class PubViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action == 'create':
             permission_classes = [IsAuthenticated] 
-        elif self.action == 'like_it':
+        elif self.action == 'like_it' or self.action == 'comment_it':
             permission_classes = [IsAuthenticated] 
         else:
             permission_classes = [IsOwnerOrReadOnly]
@@ -38,7 +38,7 @@ class PubViewSet(viewsets.ModelViewSet):
     
     def like_it(self, *args, **kwargs):
         publication = get_object_or_404(Publication, id=kwargs.get('pk'))
-        comments = publication.comments_counter
+        
         if self.request.user in publication.likes.all():
             publication.likes.remove(self.request.user)
             result = False
@@ -50,8 +50,17 @@ class PubViewSet(viewsets.ModelViewSet):
             
         publication.save()
         return Response({'status': 'ok', 'result': result, 'count': publication.likes_counter, 'comment': comments})
-
-
+    
+    
+    def comment_it(self, *args, **kwargs):
+        publication = get_object_or_404(Publication, id=kwargs.get('pk'))
+        publication.comments_counter += 1
+        publication.save()
+        comment = Comments(post=publication, author=self.request.user, text=self.request.data['text'] )
+        comment.save()
+        return Response({'status': 'ok', 'comment': publication.comments_counter})
+        
+        
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated, ]
 
