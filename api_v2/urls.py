@@ -15,6 +15,6 @@ urlpatterns = [
     path('login/', obtain_auth_token, name='api_token_auth'),
     path('like/<int:pk>', PubViewSet.as_view({'get': 'like_it'}), name='like_it'),
     path('logout/', LogoutView.as_view(), name='api_token_delete'),
-    path('comment_it/<int:pk>', PubViewSet.as_view({'post': 'comment_it'}), name='comment_it'),
+    path('comment_it/<int:pk>', PubViewSet.as_view({'get': 'comment_it'}), name='comment_it'),
 ]
 

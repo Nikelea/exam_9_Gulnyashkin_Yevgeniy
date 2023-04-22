@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import View, TemplateView, FormView, ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.contrib.auth import get_user_model
-from publications.models import Publication
+from publications.models import Publication, Comments
 from publications.forms import PublicationForm, CommentForm
 
 
@@ -54,6 +54,7 @@ class PublicationView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['form'] = CommentForm
+        context['comments'] = Comments.objects.filter(post=self.object.pk)
         return context
 
 

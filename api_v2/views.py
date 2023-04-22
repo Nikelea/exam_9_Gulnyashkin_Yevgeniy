@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated, BasePermission
 from rest_framework.permissions import SAFE_METHODS
-
+import json
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -56,7 +56,10 @@ class PubViewSet(viewsets.ModelViewSet):
         publication = get_object_or_404(Publication, id=kwargs.get('pk'))
         publication.comments_counter += 1
         publication.save()
-        comment = Comments(post=publication, author=self.request.user, text=self.request.data['text'] )
+
+        for q in self.request.GET.items():
+            
+            comment = Comments(post=publication, author=self.request.user, text=json.loads(q[0])['text'] )
         comment.save()
         return Response({'status': 'ok', 'comment': publication.comments_counter})
         

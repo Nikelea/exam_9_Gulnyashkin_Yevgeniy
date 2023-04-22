@@ -37,7 +37,11 @@
     </div>
   </div>
   <br>
-  <form action="#" method="post" class="mt-2">
+  {% for comment in comments %}
+  <p>Сообщение: {{comment.text}}</p>
+  <p>Автор: {{comment.author}}</p>
+  {% endfor %}
+  <form action="" method="get" class="mt-2">
     {% csrf_token %}
     <label> Добавить сообщение:</label>
     <input type="text" name="message" placeholder="Введите сообщение" class="form-control" required id="id_message">
@@ -52,7 +56,7 @@
 
        $.ajax({
            url: `http://localhost:8000/api/v2/comment_it/${pub.value}`,
-           method: 'post',
+           method: 'get',
            data: JSON.stringify({ text: text.value}),
            dataType: 'json',
            headers: { 'Authorization': 'Token ' + localStorage.getItem('apiToken') },
@@ -61,6 +65,7 @@
            error: function (response, status) { console.log(response); }
        });
    }
-   let send = document.getElementById('message').addEventListener('click', comment_it)
+   let mes = document.getElementById('message')
+   let send = mes.addEventListener('click', comment_it)
 </script>
   {% endblock %}
