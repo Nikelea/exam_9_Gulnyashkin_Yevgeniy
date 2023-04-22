@@ -17,6 +17,9 @@ window.addEventListener('load', onLoad);
 const like = function (e) {
     e.preventDefault();
     const pub_id = this.id
+    let link = document.getElementById(pub_id);
+    let count = document.getElementById('b' + pub_id)
+    link.setAttribute('disabled', 'disabled')
     try {
         $.ajax({
             url: 'http://localhost:8000/api/v2/like/' + pub_id,
@@ -25,8 +28,7 @@ const like = function (e) {
             contentType: 'application/json',
             success: function (response, status) {
                 console.log(response);
-                let link = document.getElementById(pub_id);
-                let count = document.getElementById('b' + pub_id)
+
 
                 if (response.result === true) {
                     link.innerHTML = 'Из избранного';
